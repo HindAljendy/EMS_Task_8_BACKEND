@@ -27,13 +27,10 @@ class NoteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store_note_department(Note_Department_Request $request)
+    public function store_note_department(Note_Department_Request $request , $department_id)
     {
         try {
-            /* $department = Department::where('id', $request->department_id)->first(); */
-            $id = $request->input('department_id');
-            // Find department or employee based on the id
-            $department = Department::find($id);
+            $department= Department::where('id',$department_id)->first();
             if (!$department) {
                 return $this->customeResponse(null, 'Department not found', 404);
             }
@@ -48,11 +45,14 @@ class NoteController extends Controller
         }
     }
 
-    public function store_note_employee(Note_Employee_Request $request)
+    public function store_note_employee(Note_Employee_Request $request , $employee_id)
     {
         try {
-            $employee = Employee::where('id', $request->id)->first();
-            $note = $employee->notes()->create([
+            $employee= Employee::where('id',$employee_id)->first();
+            if (!$employee) {
+                return $this->customeResponse(null, 'Employee not found', 404);
+            }
+           $note = $employee->notes()->create([
                 'note' => $request->note,
             ]);
             return $this->customeResponse($note, 'Note that special Employee Created Successfuly', 200);

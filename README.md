@@ -17,33 +17,37 @@ An employee management system is technology designed to streamline core HR servi
 ## Setup Instructions  
 
 1. Clone the repository to your local machine  
-shell
 
-git clone <repository_url>
+git clone "https://github.com/HindAljendy/EMS_Task_8_BACKEND"
+
 2. Install dependencies  
-shell
 
 composer install  
-npm install  
+
+
 3. Copy the .env.example file and rename it to .env
-shell
 
 cp .env.example .env
+
 4. Generate application key  
-shell
 
 php artisan key:generate
+
 5. Create a new database and update the .env file with your database credentials
 
+
 6. Migrate the database  
-shell
 
 php artisan migrate
+
+
+
 7. Seed the database 
-shell
 
 php artisan db:seed
+
+
+
 8. Start the development server  
-shell
 
 php artisan serve
